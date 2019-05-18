@@ -4,9 +4,9 @@ require "./lib/lxc"
 
 # Commands for interacting with Steamcmd
 module Steamcmd
-  def self.install_server(container, app_id, path, credentials = nil)
-    install_steamcmd(container) if steamcmd_exists?(container) == false
-    Lxc.exec_tty(container, "/opt/steamcmd.sh #{steamcmd_login(credentials)} +force_install_dir #{path} +app_update #{app_id} validate +quit")
+  def self.install_server(container, game)
+    install_steamcmd(container)
+    Lxc.exec_tty(container, "/opt/steamcmd.sh +login anonymous +force_install_dir /root/#{game.name} +app_update #{game.app_id} validate +quit")
   end
 
   def self.install_steamcmd(container)

@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 $LOAD_PATH << "./lib"
+$LOAD_PATH << "./conf"
 
-require "lxc"
-require "steamcmd"
+require "server_lookup"
 require "sinatra"
 require "sinatra/reloader"
 
 post "/install/" do
   Process.detach(
     fork do
-      container_name = Lxc.create(params[:name])
-      Steamcmd.install_server(container_name, "4020", "/tmp/#{params[:name]}")
+      ServerLookup.servers[params[:name]].install(Lxc.create(params[:name]))
     end
   )
   "Creating container...\n"
