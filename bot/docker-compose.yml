@@ -1,0 +1,8 @@
+version: "2"
+services:
+  androgee:
+    network_mode: "host"
+    env_file:
+      - vars.env
+    build:
+      context: .
