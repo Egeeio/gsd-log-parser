@@ -1,7 +1,7 @@
 version: "2"
 services:
   androgee:
-    network_mode: "host"
+    restart: "always"
     env_file:
       - vars.env
     build:
