@@ -3,7 +3,7 @@
 Thread.abort_on_exception = true
 require "timers"
 require "discordrb"
-require "./lib/handlers/discord"
+require "./lib/helpers/discord"
 
 # Listen for events from Discord and systemd
 module Listen
