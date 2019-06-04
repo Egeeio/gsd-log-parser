@@ -1,8 +1,0 @@
-version: "2"
-services:
-  androgee:
-    restart: "always"
-    env_file:
-      - vars.env
-    build:
-      context: .
