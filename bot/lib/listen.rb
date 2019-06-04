@@ -14,7 +14,7 @@ module Listen
   end
 
   def self.game_server_hooks(server)
-    games = { "minecraft" => [], "rust" => [] } # Should this be an external file maybe?
+    games = { "minecraft" => [] }
     timer = Timers::Group.new
     timer.now_and_every(15) { DiscordHelpers.game_announce(server, games) }
     Thread.new { loop { timer.wait } }
