@@ -1,3 +1,3 @@
-import Connect from "./lib/parser";
+import Parse from "./lib/parser";
 
-Connect();
+Parse();
