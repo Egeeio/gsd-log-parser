@@ -1,0 +1,11 @@
+[Unit]
+Description=Log parser for games
+After=network.target
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/log-parser
+ExecStart=/usr/bin/node dist/index.js minecraft
