@@ -1,3 +1,8 @@
 import Parse from "./lib/parser";
 
-Parse();
+const game = process.argv.pop()!;
+
+if (game)
+  Parse(game);
+else
+  console.error("Missing argument, aborting...");
