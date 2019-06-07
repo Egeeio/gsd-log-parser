@@ -7,5 +7,5 @@ WantedBy=default.target
 
 [Service]
 Type=oneshot
-WorkingDirectory=/opt/log-parser
+WorkingDirectory=/opt/gsd-log-parser
 ExecStart=/usr/bin/node dist/index.js minecraft
