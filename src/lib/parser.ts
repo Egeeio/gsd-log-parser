@@ -6,7 +6,7 @@ export default async function Parse(game: string) {
   const found = log.match(regex);
   if (found) {
     const player = found[0];
-    console.log(`player joined: ${player}`);
     childProcess.execSync(`echo ${player} >> /tmp/players`);
+    console.log(`player joined: ${player}`);
   }
 }
