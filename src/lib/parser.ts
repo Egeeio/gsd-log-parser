@@ -1,10 +1,13 @@
 import childProcess from "child_process";
 import Redis from "ioredis";
 
+const regex = {
+  minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
+};
+
 export default async function Parse(game: string) {
   const log = childProcess.execSync(`journalctl --since '60 seconds ago' --no-pager -u ${game}`).toString();
-  const regex = /(?<=\bUUID\sof\splayer\s)(\w+)/;
-  const found = log.match(regex);
+  const found = log.match(regex[game]);
 
   if (found) {
     const player = found[0];
@@ -12,9 +15,7 @@ export default async function Parse(game: string) {
       host: process.env.IP!,
       port: parseInt(process.env.PORT!, 10),
     });
-    redis.set("minecraft", player);
-    childProcess.execSync(`echo ${player} >> /tmp/players`);
-    const fromRedis = await redis.get("minecraft");
-    console.log(`player joined: ${fromRedis}`);
+    redis.set(game, player);
+    console.log(`player joined: ${player}`);
   }
 }
