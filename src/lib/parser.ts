@@ -14,6 +14,7 @@ export default async function Parse(game: string) {
     port: parseInt(process.env.PORT!, 10),
   });
   const pub = new Redis();
+  console.log(found);
 
   if (found) {
     const player = found[0];
