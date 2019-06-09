@@ -6,7 +6,8 @@ const regex = {
 };
 
 export default async function Parse(game: string) {
-  const log = childProcess.execSync(`journalctl --since '60 seconds ago' --no-pager -u ${game}`).toString();
+  const log = childProcess.execSync
+              (`journalctl --since '${parseInt(process.env.LOOP!, 10)}ms ago' --no-pager -u ${game}`).toString();
   const found = log.match(regex[game]);
 
   if (found) {
