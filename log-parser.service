@@ -8,6 +8,6 @@ WantedBy=default.target
 [Service]
 Environment=IP=192.168.223.200
 Environment=PORT=6379
-Type=oneshot
+Type=simple
 WorkingDirectory=/opt/gsd-log-parser
 ExecStart=/usr/bin/node dist/index.js minecraft
