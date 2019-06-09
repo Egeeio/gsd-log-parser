@@ -9,11 +9,12 @@ export default async function Parse(game: string) {
   const log = childProcess.execSync
               (`journalctl --since '${parseInt(process.env.LOOP!, 10)}ms ago' --no-pager -u ${game}`).toString();
   const found = log.match(regex[game]);
-  const redis = new Redis({
+  const connString = {
     host: process.env.IP!,
     port: parseInt(process.env.PORT!, 10),
-  });
-  const pub = new Redis();
+  };
+  const redis = new Redis(connString);
+  const pub = new Redis(connString);
   console.log(found);
 
   if (found) {
