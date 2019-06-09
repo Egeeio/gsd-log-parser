@@ -9,14 +9,17 @@ export default async function Parse(game: string) {
   const log = childProcess.execSync
               (`journalctl --since '${parseInt(process.env.LOOP!, 10)}ms ago' --no-pager -u ${game}`).toString();
   const found = log.match(regex[game]);
+  const redis = new Redis({
+    host: process.env.IP!,
+    port: parseInt(process.env.PORT!, 10),
+  });
+  const pub = new Redis();
 
   if (found) {
     const player = found[0];
-    const redis = new Redis({
-      host: process.env.IP!,
-      port: parseInt(process.env.PORT!, 10),
+    redis.subscribe("minecraft", (err, count) => {
+      pub.publish("minecraft", player);
     });
-    redis.set(game, player);
     console.log(`player joined: ${player}`);
   }
 }
