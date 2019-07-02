@@ -14,7 +14,7 @@ const connString = {
 export default function Subscribe(game: string) {
   const redis = new Redis(connString);
   const publisher = new Redis(connString);
-  redis.subscribe(game, (err, count) => {
+  redis.subscribe(game, (err, count) => { // TODO: to use or safely remove unused vars
     setInterval(() => {
       Publish(game, publisher);
     }, parseInt(process.env.LOOP!, 10));
@@ -22,10 +22,9 @@ export default function Subscribe(game: string) {
 }
 
 export async function Publish(game: string, publisher: Redis.Redis) {
-  const matched = await Parse(game);
+  const matched = await Parse(game); // TODO: Unsure if this needs to be async
   if (matched) {
     Router(game, matched[0], publisher);
-    console.log(`Found log match: ${matched}`);
   }
 }
 
