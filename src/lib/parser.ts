@@ -23,7 +23,9 @@ export default function Subscribe(game: string) {
 export async function Publish(game: string, publisher: Redis.Redis) {
   const matched = await Parse(game); // TODO: Unsure if this needs to be async
   if (matched) {
-    publisher.publish(game, matched[0]);
+    const player = matched[0];
+    publisher.publish(game, player);
+    console.log(`Matched ${player} in ${game}`);
   }
 }
 
