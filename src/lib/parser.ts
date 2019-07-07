@@ -5,10 +5,14 @@ const regex = {
   minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
   rust: /^.*has entered the game/m,
 };
+const connString = {
+  host: process.env.IP!,
+  port: parseInt(process.env.PORT!, 10),
+};
 
 export default function Subscribe(game: string) {
-  const redis = new Redis();
-  const publisher = new Redis();
+  const redis = new Redis(connString);
+  const publisher = new Redis(connString);
   redis.subscribe(game, (err, count) => { // TODO: use or safely remove unused vars
     setInterval(() => {
       Publish(game, publisher);
