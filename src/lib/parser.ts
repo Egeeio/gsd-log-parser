@@ -1,6 +1,5 @@
 import childProcess from "child_process";
 import Redis from "ioredis";
-import Router from "./subscriptionRouter";
 
 const regex = {
   minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
@@ -14,7 +13,7 @@ const connString = {
 export default function Subscribe(game: string) {
   const redis = new Redis(connString);
   const publisher = new Redis(connString);
-  redis.subscribe(game, (err, count) => { // TODO: to use or safely remove unused vars
+  redis.subscribe(game, (err, count) => { // TODO: use or safely remove unused vars
     setInterval(() => {
       Publish(game, publisher);
     }, parseInt(process.env.LOOP!, 10));
@@ -24,7 +23,7 @@ export default function Subscribe(game: string) {
 export async function Publish(game: string, publisher: Redis.Redis) {
   const matched = await Parse(game); // TODO: Unsure if this needs to be async
   if (matched) {
-    Router(game, matched[0], publisher);
+    publisher.publish(game, matched[0]);
   }
 }
 
