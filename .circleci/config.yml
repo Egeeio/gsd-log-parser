@@ -1,24 +1,13 @@
-# Ruby CircleCI 2.0 configuration file
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-
 version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5
-    working_directory: ~/project
+      - image: circleci/node:10
     steps:
       - checkout
       - run:
-          name: Ensure bundler is up to date
-          command: |
-            gem uninstall bundler
-            gem install bundler -v2.0.1
+          name: Install npm deps
+          command: "npm install"
       - run:
-          name: Install dependencies
-          command: | 
-            bundle install
-            gem install rspec
-      - run:
-          name: Run tests
-          command: rake test
+          name: Build Project
+          command: "npm run build"
