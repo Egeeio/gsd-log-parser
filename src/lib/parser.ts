@@ -4,6 +4,7 @@ import Redis from "ioredis";
 const regex = {
   minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
   rust: /^.*has entered the game/m,
+  sdtd: /PlayerName='.*/,
 };
 const connString = {
   host: process.env.IP!,
