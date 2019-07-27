@@ -1,5 +1,8 @@
 import Subscribe from "./lib/parser";
 
+// TODO: 1) Run as Docker container instead of Daemon
+// TODO: 2) Rewrite in Ruby maybe
+
 const game = process.argv.pop()!;
 
 if (game) {
