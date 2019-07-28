@@ -2,9 +2,9 @@ import childProcess from "child_process";
 import Redis from "ioredis";
 
 const regex = {
-  minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
-  rust: /^.*has entered the game/m,
-  sdtd: /PlayerName='.*/,
+  "7days": / PlayerName='.*/,
+  "minecraft": /(?<=\bUUID\sof\splayer\s)(\w+)/,
+  "rust": /^.*has entered the game/m,
 };
 const connString = {
   host: process.env.IP!,
