@@ -2,7 +2,7 @@ import childProcess from "child_process";
 import Redis from "ioredis";
 
 const regex = {
-  "7days": / PlayerName='.*/,
+  "7days": /Player '.*/,
   "minecraft": /(?<=\bUUID\sof\splayer\s)(\w+)/,
   "rust": /^.*has entered the game/m,
 };
