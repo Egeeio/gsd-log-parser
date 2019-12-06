@@ -1,8 +1,40 @@
-import Subscribe from "./lib/parser";
+import childProcess from "child_process";
+import Redis from "ioredis";
 
-// TODO: 0) Support parsing multiple
-// TODO: 1) Run as Docker container instead of Daemon
-// TODO: 2) Rewrite in Ruby maybe
+const regex = {
+  "7days": /Player '.*/,
+  "minecraft": /(?<=\bUUID\sof\splayer\s)(\w+)/,
+  "rust": /^.*has entered the game/m,
+};
+const connString = {
+  host: process.env.IP!,
+  port: parseInt(process.env.PORT!, 10),
+};
+
+function Subscribe(game: string) {
+  const redis = new Redis(connString);
+  const publisher = new Redis(connString);
+  redis.subscribe(game, (err, count) => { // TODO: use or safely remove unused vars
+    setInterval(() => {
+      Publish(game, publisher);
+    }, parseInt(process.env.LOOP!, 10));
+  });
+}
+
+async function Publish(game: string, publisher: Redis.Redis) {
+  const matched = await Parse(game); // TODO: Unsure if this needs to be async
+  if (matched) {
+    const player = matched[0];
+    await publisher.publish(game, player);
+    console.log(`Published ${player} in ${game}`);
+  }
+}
+
+async function Parse(game: string) {
+  const log = childProcess.execSync
+    (`journalctl --since '${parseInt(process.env.LOOP!, 10)}ms ago' --no-pager -u ${game}`).toString();
+  return log.match(regex[game]);
+}
 
 const game = process.argv.pop()!;
 
