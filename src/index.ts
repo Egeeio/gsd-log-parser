@@ -4,7 +4,7 @@ import Redis from "ioredis";
 const regex = {
   "7days": /Player '.*/,
   "minecraft": /(?<=\bUUID\sof\splayer\s)(\w+)/,
-  "rust": /^.*has entered the game/m,
+  "rust": /^.*joined from ip/m,
 };
 const connString = {
   host: process.env.IP!,
