@@ -32,7 +32,7 @@ async function Publish(game: string, publisher: Redis.Redis) {
 
 async function Parse(game: string) {
   const log = childProcess.execSync
-    (`journalctl --since '${parseInt(process.env.LOOP!, 10)}ms ago' --no-pager -u ${game}`).toString();
+    (`journalctl --user --since '${parseInt(process.env.LOOP!, 10)}ms ago' --no-pager -u ${game}`).toString();
   return log.match(regex[game]);
 }
 
