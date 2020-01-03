@@ -6,7 +6,7 @@ game = 'sshd'
 collection = "#{game}-server".to_sym
 time_ago = '300'
 
-client = Mongo::Client.new('mongodb://egee.io:/test')
+client = Mongo::Client.new('mongodb://egee.io:33017/test')
 collection = client[collection]
 doc = { name: game, user: 'mrjs' }
 
