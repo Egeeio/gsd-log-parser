@@ -11,18 +11,11 @@ if (game[2]) {
   process.exit(1)
 }
 
-const regex = {
-  '7days': /Player '.*/,
-  minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
-  rust: /^.*joined from ip/m
-}
-
-const connectionStr = {
-  host: 'localhost',
-  port: 6379
-}
-
 function Subscribe (game) {
+  const connectionStr = {
+    host: 'localhost',
+    port: 6379
+  }
   const redis = new Redis(connectionStr)
   const publisher = new Redis(connectionStr)
   redis.subscribe(game, (err, count) => { // TODO: use or safely remove unused vars
@@ -42,6 +35,11 @@ async function Publish (game, publisher) {
 }
 
 async function Parse (game) {
+  const regex = {
+    '7days': /Player '.*/,
+    minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
+    rust: /^.*joined from ip/m
+  }
   try {
     const log = childProcess.execSync(`journalctl --user --since '${interval}ms ago' --no-pager -u ${game}`).toString()
     return log.match(regex[game])
