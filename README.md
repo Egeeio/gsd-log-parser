@@ -1,15 +1,26 @@
-# log-parser [![CircleCI](https://circleci.com/gh/Egeeio/gsd-log-parser.svg?style=svg)](https://circleci.com/gh/Egeeio/gsd-log-parser)
+# log-parsed [![CircleCI](https://circleci.com/gh/Egeeio/gsd-log-parser.svg?style=svg)](https://circleci.com/gh/Egeeio/gsd-log-parser)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/b609edfcef21ba4e5d1d/maintainability)](https://codeclimate.com/github/Egeeio/gsd-log-parser/maintainability)
-[![Discord](https://discordapp.com/api/guilds/183740337976508416/widget.png?style=shield)](https://discord.gg/EMbcgR8)
+[![Build Status](https://travis-ci.com/Egeeio/gsd-cli.svg?branch=master)](https://travis-ci.com/Egeeio/gsd-cli)
 
-gsd-log-parser is a micro-service that parses dedicated game server logs from journald and publishes new players to Redis.
+log-parsed is a micro-service that parses the systemd journal and publishes to Redis.
 
 ## Built with 💖 and
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [ioredis](https://github.com/luin/ioredis)
 
-## Purpose
+##
 
-gsd-log-parser is designed to work with dedicated game servers created with the [gsd-cli](https://github.com/Egeeio/gsd-cli). gsd-log-parser runs as a daemon and perodically parses journald for new players joining the server. When a new player joins, the player name is published to Redis, where another gsd service publishes the players to a Discord server.
+log-parsed is designed to be run by a service manager such as systemd. A very simple unit file placed at `/etc/systemd/system` would look something like this:
+
+[Unit]
+Description=A service for parsing the systemd journal
+After=network.target
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=simple
+ExecStart=log-parsed
