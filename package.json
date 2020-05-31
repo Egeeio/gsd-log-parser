@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js minecraft",
-    "restart": "npm run clean-dist && npm run build && node dist/index.js",
+    "restart": "npm run clean-dist && npm run build && npm run start",
     "build": "node_modules/.bin/tsc --build tsconfig.json",
     "rebuild": "npm run clean-dist && npm run build",
     "clean": "rm -rf node_modules && npm run clean-dist",
