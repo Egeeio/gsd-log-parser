@@ -2,7 +2,7 @@
   "name": "gsd-log-parser",
   "version": "1.0.0",
   "description": "a journald log parser",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "start": "node dist/index.js minecraft",
     "restart": "npm run clean-dist && npm run build && npm run start",
@@ -10,8 +10,7 @@
     "rebuild": "npm run clean-dist && npm run build",
     "clean": "rm -rf node_modules && npm run clean-dist",
     "clean-npm": "rm -rf node_modules && npm install",
-    "clean-dist": "rm -rf dist/* && touch dist/.gitkeep",
-    "test": "jest"
+    "clean-dist": "rm -rf dist/* && touch dist/.gitkeep"
   },
   "repository": {
     "type": "git",
@@ -24,8 +23,7 @@
   },
   "homepage": "https://github.com/Egeeio/gsd-log-parser#readme",
   "dependencies": {
-    "ioredis": "^4.10.0",
-    "typescript": "^3.4.5"
+    "ioredis": "^4.10.0"
   },
   "devDependencies": {
     "@types/ioredis": "^4.0.11",
@@ -38,8 +36,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "jest": "^24.8.0",
-    "ts-node": "^8.2.0",
-    "tslint": "^5.16.0"
+    "ts-node": "^8.2.0"
   }
 }
