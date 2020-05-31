@@ -40,6 +40,8 @@ async function Parse (game) {
     minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
     rust: /^.*joined from ip/m
   }
+  const test = `journalctl --user --since '${interval}ms ago' --no-pager -u ${game}`
+  console.log(test)
   try {
     const log = childProcess.execSync(`journalctl --user --since '${interval}ms ago' --no-pager -u ${game}`).toString()
     return log.match(regex[game])
