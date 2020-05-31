@@ -30,6 +30,14 @@
   "devDependencies": {
     "@types/ioredis": "^4.0.11",
     "@types/node": "^12.0.4",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "eslint": "^7.1.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "jest": "^24.8.0",
     "ts-node": "^8.2.0",
     "tslint": "^5.16.0"
