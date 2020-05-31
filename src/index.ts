@@ -5,13 +5,13 @@ const interval = 30000
 const game = process.argv[2]
 
 if (game) {
-  Subscribe(game)
+  Subscribe()
 } else {
   console.error('Missing argument, aborting...')
   process.exit(1)
 }
 
-function Subscribe (game: string) {
+function Subscribe (game) {
   const connectionStr = {
     host: 'localhost',
     port: 6379
@@ -25,7 +25,7 @@ function Subscribe (game: string) {
   })
 }
 
-async function Publish (game: string, publisher: Redis.Redis) {
+async function Publish (game, publisher: Redis.Redis) {
   const matched = await Parse(game)
   if (matched) {
     const player = matched[0]
@@ -34,7 +34,7 @@ async function Publish (game: string, publisher: Redis.Redis) {
   }
 }
 
-async function Parse (game: string) {
+async function Parse (game) {
   const regex = {
     '7days': /Player '.*/,
     minecraft: /(?<=\bUUID\sof\splayer\s)(\w+)/,
@@ -44,6 +44,6 @@ async function Parse (game: string) {
     const log = childProcess.execSync(`journalctl --user --since '${interval}ms ago' --no-pager -u ${game}`).toString()
     return log.match(regex[game])
   } catch (error) {
-    console.log(error.message)
+    console.log(`Error retrieving player from journalctl: ${error.message}`)
   }
 }
