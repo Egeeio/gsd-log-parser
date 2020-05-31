@@ -1,8 +1,11 @@
 {
-  "name": "gsd-log-parser",
-  "version": "1.0.0",
+  "name": "log-parsed",
+  "version": "0.1.0",
   "description": "a journald log parser",
   "main": "./dist/index.js",
+  "bin": {
+    "log-parsed": "./dist/index.js"
+  },
   "scripts": {
     "start": "node dist/index.js minecraft",
     "restart": "npm run clean-dist && npm run build && npm run start",
