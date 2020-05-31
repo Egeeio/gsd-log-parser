@@ -10,10 +10,9 @@ log-parsed is a micro-service that parses the systemd journal and publishes to R
 - [TypeScript](https://www.typescriptlang.org/)
 - [ioredis](https://github.com/luin/ioredis)
 
-##
-
 log-parsed is designed to be run by a service manager such as systemd. A very simple unit file placed at `/etc/systemd/system` would look something like this:
 
+```
 [Unit]
 Description=A service for parsing the systemd journal
 After=network.target
@@ -24,3 +23,4 @@ WantedBy=default.target
 [Service]
 Type=simple
 ExecStart=log-parsed
+```
