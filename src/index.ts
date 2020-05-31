@@ -11,7 +11,7 @@ if (game) {
   process.exit(1)
 }
 
-function Subscribe (game) {
+function Subscribe () {
   const connectionStr = {
     host: 'localhost',
     port: 6379
