@@ -29,7 +29,7 @@ function Subscribe () {
 
 async function Publish (game, publisher: Redis.Redis) {
   const matched = await Parse(game)
-  if (matched) {
+  if (matched && matched.length > 0) {
     const player = matched[0]
     await publisher.publish(game, player)
     console.log(`Published ${player} in ${game}`)
@@ -46,6 +46,7 @@ async function Parse (game) {
     const log = childProcess.execSync(`journalctl --since '${interval}ms ago' --no-pager -u ${game}`).toString()
     return log.match(regex[game])
   } catch (error) {
-    console.log(`Error retrieving player from journalctl: ${error.message}`)
+    console.log(error.message)
+    return ''
   }
 }
