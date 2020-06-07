@@ -15,7 +15,7 @@ if (game) {
 
 function Subscribe () {
   const connectionStr = {
-    host: 'localhost',
+    host: process.env.HOSTNAME!,
     port: 6379
   }
   const redis = new Redis(connectionStr)
