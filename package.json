@@ -7,13 +7,12 @@
     "log-parsed": "./dist/index.js"
   },
   "scripts": {
-    "start": "node dist/index.js minecraft",
-    "restart": "npm run clean-dist && npm run build && npm run start",
+    "start": "npm run build && npm run restart",
+    "restart": "node dist/index.js",
     "build": "node_modules/.bin/tsc --build tsconfig.json",
     "rebuild": "npm run clean-dist && npm run build",
     "clean": "rm -rf node_modules && npm run clean-dist",
-    "clean-npm": "rm -rf node_modules && npm install",
-    "clean-dist": "rm -rf dist/* && touch dist/.gitkeep"
+    "clean-npm": "rm -rf node_modules && npm install"
   },
   "repository": {
     "type": "git",

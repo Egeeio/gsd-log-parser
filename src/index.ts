@@ -3,29 +3,20 @@
 import childProcess from 'child_process'
 import Redis from 'ioredis'
 
-const interval = 30000
+if (!process.argv[2]) throw new Error('MISSING ARGUMENT 🔌')
+
 const game = process.argv[2]
+const interval = 30000
+const redis = new Redis({ host: process.env.REDIS_HOST, password: process.env.REDIS_KEY })
+const publisher = new Redis({ host: process.env.REDIS_HOST, password: process.env.REDIS_KEY })
 
-if (game) {
-  Subscribe()
-} else {
-  console.error('Missing argument, aborting...')
-  process.exit(1)
-}
+// redis.auth(process.env.REDIS_KEY!)
 
-function Subscribe () {
-  const connectionStr = {
-    host: process.env.HOSTNAME!,
-    port: 6379
-  }
-  const redis = new Redis(connectionStr)
-  const publisher = new Redis(connectionStr)
-  redis.subscribe(game, (_err, _count) => {
-    setInterval(() => {
-      Publish(game, publisher)
-    }, interval)
-  })
-}
+redis.subscribe(game, (_err, _count) => {
+  setInterval(() => {
+    Publish(game, publisher)
+  }, interval)
+})
 
 async function Publish (game, publisher: Redis.Redis) {
   const matched = await Parse(game)
