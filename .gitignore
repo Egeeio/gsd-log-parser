@@ -66,4 +66,4 @@ launch.json
 vscode/*
 
 # dist stuff
-dist/*
+dist
