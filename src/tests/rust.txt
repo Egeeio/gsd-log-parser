@@ -1,0 +1,10 @@
+Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: m249.entity[4329312] changed its network group to null
+Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: 710151[710151] died (Generic)
+Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: 3603741[3603741] died (Generic)
+Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: Invalid Position: scientist_corpse[4329344] (-947.5, 31.2, -4389.0) (destroying)
+Aug 30 18:48:22 gameserver01 RustDedicated[1636634]: Saving complete
+Aug 30 18:51:49 gameserver01 RustDedicated[1636634]: Checking for new Steam Item Definitions..
+Aug 30 18:52:54 gameserver01 RustDedicated[1636634]: 98.26.931.23:57203/76561198072661541/penguinluff joined [windows/76561198072661541]
+Aug 30 18:52:54 gameserver01 RustDedicated[1636634]: penguinluff[76561198072661541] has spawned
+Aug 30 18:52:54 gameserver01 RustDedicated[1636634]: (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)

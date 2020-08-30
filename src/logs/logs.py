@@ -1,11 +1,9 @@
 import os
 import re
-import time
 import redis
 import subprocess
 
 debug = os.getenv("LOGGER_DEBUG")
-interval = os.getenv("INTERVAL")
 redis_host = os.getenv("REDIS_HOST")
 redis_pass = os.getenv("REDIS_KEY")
 game_daemon = os.getenv("GAME")
@@ -17,33 +15,33 @@ regex_dict = {
     'rust': r"(\/.*\/)(.*)(joined)",
 }
 
-while True:
-    if debug:
-        file = open(f"./src/tests/{game_daemon}.log")
-        log_slice = file.read().replace("\n", " ")
-        file.close()
-    else:
-        log_slice = subprocess.run(
-            [
-                'journalctl',
-                '--since',
-                f'{interval}s ago',
-                '--no-pager',
-                '-u',
-                game_daemon
-            ],
-            check=True
-        )
-    try:
-        regex = regex_dict[game_daemon]
-        yeet = str(log_slice)
-
+if debug:
+    file = open(f"./src/tests/{game_daemon}.txt")
+    log_slice = file.read().replace("\n", " ")
+    file.close()
+    log_stdout = str(log_slice)
+else:
+    log_slice = subprocess.check_output(
+        [
+            'journalctl',
+            '--since',
+            f'45s ago',
+            '--no-pager',
+            '-u',
+            game_daemon
+        ],
+        universal_newlines=True
+    )
+    log_stdout = log_slice
+try:
+    regex = regex_dict[game_daemon]
+    match = re.search(regex, log_stdout)
+    if match:
         if game_daemon == "rust":
-            match = re.search(regex, yeet).group(2).strip()
+            match = re.search(regex, log_stdout).group(2).strip()
         else:
-            match = re.search(regex, yeet).group().strip()
-        # print(match)
+            match = re.search(regex, log_stdout).group().strip()
+        print(f"PUBLISHING: {match} TO: {game_daemon}")
         rdb.publish(game_daemon, match)
-    except Exception as err:
-        print(f"Failed to publish!: {err}")
-    time.sleep(int(interval))
+except Exception as err:
+    print(f"Failed to publish!: {err}")
