@@ -1,26 +1,21 @@
 import os
 import re
-import sys
 import time
 import redis
 import subprocess
 
-debug = True
+debug = os.getenv("LOGGER_DEBUG")
 interval = os.getenv("INTERVAL")
 redis_host = os.getenv("REDIS_HOST")
 redis_pass = os.getenv("REDIS_KEY")
 game_daemon = os.getenv("GAME")
 
+rdb = redis.Redis(host=redis_host, password=redis_pass)
 regex_dict = {
     'sdtd': r"Player '.*",
     'minecraft': r"(?<=\bUUID\sof\splayer\s)(\w+)",
-    'rust': r"^.*joined from ip",
+    'rust': r"(\/.*\/)(.*)(joined)",
 }
-
-rdb = redis.Redis(
-    host=redis_host,
-    password=redis_pass)
-
 
 while True:
     if debug:
@@ -39,10 +34,16 @@ while True:
             ],
             check=True
         )
-    
-    regex = regex_dict[game_daemon]
-    yeet = str(log_slice)
-    match = re.search(regex, yeet).group()
-    print(match)
-    # rdb.publish("minecraft", "yeeterism")
+    try:
+        regex = regex_dict[game_daemon]
+        yeet = str(log_slice)
+
+        if game_daemon == "rust":
+            match = re.search(regex, yeet).group(2).strip()
+        else:
+            match = re.search(regex, yeet).group().strip()
+        # print(match)
+        rdb.publish(game_daemon, match)
+    except Exception as err:
+        print(f"Failed to publish!: {err}")
     time.sleep(int(interval))
