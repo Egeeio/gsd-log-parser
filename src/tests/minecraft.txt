@@ -1,0 +1,14 @@
+Aug 30 18:13:43 gameserver01 bash[2000868]: [18:13:43 INFO]: (Satan) egeeirl has made the advancement [Hot Stuff]
+Aug 30 18:13:51 gameserver01 bash[2000868]: [18:13:51 INFO]: *--------- ChatControl rule match on egeeirl --------- ID UNSET
+Aug 30 18:13:51 gameserver01 bash[2000868]: [18:13:51 INFO]: MATCH: ;\)
+Aug 30 18:13:51 gameserver01 bash[2000868]: [18:13:51 INFO]: CATCH: ;)
+Aug 30 18:13:51 gameserver01 bash[2000868]: [18:13:51 INFO]: FINAL: ㋡
+Aug 30 18:13:51 gameserver01 bash[2000868]: [18:13:51 INFO]: <§x(Satan) egeeirl> ㋡
+Aug 30 18:40:14 gameserver01 bash[2000868]: [18:40:14 INFO]: (Satan) egeeirl has made the advancement [Not Today, Thank You]
+Aug 30 18:40:56 gameserver01 bash[2000868]: [18:40:56 INFO]: UUID of player Julsman is f956abbc-0eb1-4e41-858a-9e42a624c8cb
+Aug 30 18:40:56 gameserver01 bash[2000868]: [18:40:56 INFO]: (demon) Julsman joined the game
+Aug 30 18:40:57 gameserver01 bash[2000868]: [18:40:57 INFO]: Julsman[/98.246.93.233:60852] logged in with entity id 270282 at ([world_nether]-125.69999998807907, 44.0, 110.69999998807907)
+Aug 30 18:40:59 gameserver01 bash[2000868]: [18:40:59 INFO]: <§x(Satan) egeeirl> yeeees
+Aug 30 18:46:39 gameserver01 bash[2000868]: [18:46:39 INFO]: Julsman left the game
+Aug 30 18:46:47 gameserver01 bash[2000868]: [18:46:47 INFO]: penguinluff left the game
+Aug 30 18:48:22 gameserver01 bash[2000868]: [18:48:22 INFO]: egeeirl left the game
