@@ -36,7 +36,7 @@ else:
 try:
     regex = regex_dict[game_daemon]
     match = re.search(regex, log_stdout)
-    if match:
+    if match is not None:
         if game_daemon == "rust":
             match = re.search(regex, log_stdout).group(2).strip()
         else:
