@@ -3,6 +3,7 @@ import re
 import redis
 import subprocess
 
+
 def lager():
     debug = os.getenv("LOGGER_DEBUG")
     redis_host = os.getenv("REDIS_HOST")
