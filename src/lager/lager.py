@@ -8,13 +8,15 @@ def lager():
     debug = os.getenv("LOGGER_DEBUG")
     redis_host = os.getenv("REDIS_HOST")
     redis_pass = os.getenv("REDIS_KEY")
+    redis_port = os.getenv("REDIS_PORT")
     game_daemon = os.getenv("GAME")
 
-    rdb = redis.Redis(host=redis_host, password=redis_pass)
+    rdb = redis.Redis(host=redis_host, password=redis_pass, port=redis_port)
     regex_dict = {
         'sdtd': r"Player '.*",
         'minecraft': r"(?<=\bUUID\sof\splayer\s)(\w+)",
         'rust': r"(\/.*\/)(.*)(joined)",
+        'rust-alt': r"(.*]:)(.*)(with)",
     }
 
     if debug:
