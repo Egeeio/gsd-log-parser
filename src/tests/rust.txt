@@ -1,10 +1,17 @@
-Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: m249.entity[4329312] changed its network group to null
-Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
-Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: 710151[710151] died (Generic)
-Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: 3603741[3603741] died (Generic)
-Aug 30 18:29:45 gameserver01 RustDedicated[1636634]: Invalid Position: scientist_corpse[4329344] (-947.5, 31.2, -4389.0) (destroying)
-Aug 30 18:48:22 gameserver01 RustDedicated[1636634]: Saving complete
-Aug 30 18:51:49 gameserver01 RustDedicated[1636634]: Checking for new Steam Item Definitions..
-Aug 30 18:52:54 gameserver01 RustDedicated[1636634]: 98.26.931.23:57203/76561198072661541/penguinluff joined [windows/76561198072661541]
-Aug 30 18:52:54 gameserver01 RustDedicated[1636634]: penguinluff[76561198072661541] has spawned
-Aug 30 18:52:54 gameserver01 RustDedicated[1636634]: (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+Sep 19 19:25:57 game-sever RustDedicated[108244]: Fallback handler could not load library /srv/rust/RustDedicated_Data/Mono/libadvapi32.dll
+Sep 19 19:29:37 game-sever RustDedicated[108244]: penguinluff with steamid 765619807266155 joined from ip 51.13.42.136:57018
+Sep 19 19:29:37 game-sever RustDedicated[108244]:         NetworkId 7696119072661541 is 56456 (penguinluff)
+Sep 19 19:31:27 game-sever RustDedicated[108244]: Saved 31,720 ents, cache(0.07), write(0.01), disk(0.01).
+Sep 19 19:31:27 game-sever RustDedicated[108244]: Saving complete
+Sep 19 19:32:34 game-sever RustDedicated[108244]:  [ServerVar] giving penguinluff 1 x High External Stone Wall
+Sep 19 19:36:16 game-sever RustDedicated[108244]: 51.13.42.136:60198/765619807266155/penguinluff has auth level 1
+Sep 19 19:37:19 game-sever RustDedicated[108244]: 51.13.42.136:60198/7696119072661541/penguinluff joined [windows/765619807266155]
+Sep 19 19:37:19 game-sever RustDedicated[108244]: penguinluff[7696119072661541] has spawned
+Sep 19 19:38:22 game-sever RustDedicated[108244]: 51.13.42.136:60198/7696119072661541/penguinluff disconnecting: disconnect
+Sep 19 19:31:55 game-sever RustDedicated[108244]: (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+Sep 21 23:42:20 game-beta RustDedicated[109471]: Тесерон (Teseron) with steamid 76361198007157648 joined from ip 62.22.147.132:50735
+Sep 21 23:42:20 game-beta RustDedicated[109471]:         NetworkId 76361198007157648 is 1239062 (Тесерон (Teseron))
+Sep 21 23:42:20 game-beta RustDedicated[109471]: Тесерон (Teseron)[76361198007157648] has spawned
+Sep 21 23:42:20 game-beta RustDedicated[109471]: (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+Sep 21 23:43:03 game-beta RustDedicated[109471]: Тесерон (Teseron)[76561198007151648] was suicide by Suicide
+Sep 21 23:43:12 game-beta RustDedicated[109471]: Тесерон (Teseron)[76561198007151648] has spawned
