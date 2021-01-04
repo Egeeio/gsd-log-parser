@@ -15,7 +15,7 @@ def lager():
     regex_dict = {
         'sdtd': r"Player '.*",
         'minecraft': r"(?<=\bUUID\sof\splayer\s)(\w+)",
-        'rust': r"(\/.*\/)(.*)(joined)",
+        'rust': r"(.*]:)(.*)(with steamid)(.*joined\s)",
         'rust-alt': r"(.*]:)(.*)(with)",
     }
 
