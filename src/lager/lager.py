@@ -1,15 +1,16 @@
 import os
 import re
+import click
 import redis
 import subprocess
 
-
-def lager():
-    debug = os.getenv("LOGGER_DEBUG")
-    redis_host = os.getenv("REDIS_HOST")
+@click.command()
+@click.option("--name")
+@click.option("--host")
+@click.option("--debug")
+def lager(game_daemon, redis_host, debug):
     redis_pass = os.getenv("REDIS_KEY")
     redis_port = os.getenv("REDIS_PORT")
-    game_daemon = os.getenv("GAME")
 
     rdb = redis.Redis(host=redis_host, password=redis_pass, port=redis_port)
     regex_dict = {
@@ -47,6 +48,7 @@ def lager():
                 match = re.search(regex, log_stdout).group().strip()
             print(f"PUBLISHING: {match} TO: {game_daemon}")
             rdb.publish(game_daemon, match)
+        print(f"Found match: {match} using: {regex}")
     except Exception as err:
         print(f"Failed to publish!: {err}")
 
