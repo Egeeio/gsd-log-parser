@@ -11,7 +11,7 @@ rdb = redis.Redis(host=redis_host, port=redis_port)
 regex_dict = {
     'sdtd': r"Player '.*",
     'minecraft': r"(?<=\bUUID\sof\splayer\s)(\w+)",
-    'rust': r"(.*]:)(.*)(with steamid)(.*joined\s)",
+    'rust': r"(\/.*?\/)(.*\s)(joined)", #r"(.*]:)(.*)(with steamid)(.*joined\s)",
 }
 
 log_slice = subprocess.check_output(
