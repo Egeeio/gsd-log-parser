@@ -11,7 +11,10 @@ rdb = redis.Redis(host=redis_host, port=redis_port)
 regex_dict = {
     'sdtd': r"Player '.*",
     'minecraft': r"(?<=\bUUID\sof\splayer\s)(\w+)",
-    'rust': r"(\/.*?\/)(.*\s)(joined)", #r"(.*]:)(.*)(with steamid)(.*joined\s)",
+    'rust': r"(.*)(\swith\ssteamid)",
+    # Facepunch/Unity keeps changing the logging format 🙄
+    # 'rust': r"(\/.*?\/)(.*\s)(joined)",
+    # 'rust': r"(.*]:)(.*)(with steamid)(.*joined\s)",
 }
 
 log_slice = subprocess.check_output(
