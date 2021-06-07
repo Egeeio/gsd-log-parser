@@ -9,17 +9,16 @@ game_daemon = os.getenv("GAME")
 
 rdb = redis.Redis(host=redis_host, port=redis_port)
 regex_dict = {
-    'sdtd': r"Player '.*",
-    'minecraft': r"(?<=\bUUID\sof\splayer\s)(\w+)",
-    'rust': r"(.*)(\swith\ssteamid)",
+    "sdtd": r"Player '.*",
+    "minecraft": r"(?<=\bUUID\sof\splayer\s)(\w+)",
+    "rust": r"(.*)(\swith\ssteamid)",
     # Facepunch/Unity keeps changing the logging format 🙄
     # 'rust': r"(\/.*?\/)(.*\s)(joined)",
     # 'rust': r"(.*]:)(.*)(with steamid)(.*joined\s)",
 }
 
 log_slice = subprocess.check_output(
-    [ 'docker', 'logs', '--since', '60s', game_daemon ],
-    universal_newlines=True
+    ["docker", "logs", "--since", "60s", game_daemon], universal_newlines=True
 )
 log_stdout = log_slice
 
@@ -34,6 +33,6 @@ try:
         print(f"PUBLISHING: {match} TO: {game_daemon}")
         rdb.publish(game_daemon, match)
     else:
-        print(f"No matches found.")
+        print("No matches found.")
 except Exception as err:
     print(f"Failed to publish!: {err}")
